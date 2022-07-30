@@ -1,5 +1,12 @@
+import { BsFillAlarmFill } from "react-icons/bs";
+
 function App() {
-  return <h1>project started</h1>;
+  return (
+    <>
+      <BsFillAlarmFill />
+      <h1>project started</h1>
+    </>
+  );
 }
 
 export default App;
