@@ -1,9 +1,10 @@
-import { BsFillAlarmFill } from "react-icons/bs";
+// components
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <BsFillAlarmFill />
+      <Navbar />
       <h1>project started</h1>
     </>
   );
