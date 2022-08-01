@@ -45,36 +45,31 @@ export default function Header() {
       <Navbar className="mx-auto max-w-screen-xl">
         <div className="text-blue-gray-900 container flex items-center justify-between">
           {/* logo */}
-          <Typography
-            href="./"
-            variant="h2"
-            className="mr-4 text-lg cursor-pointer py-1.5 font-normal"
-          >
-            Material Tailwind
-          </Typography>
+          <Link to="./">
+            <Typography
+              href="./"
+              variant="h2"
+              className="mr-4 text-xl cursor-pointer py-1.5 font-extrabold"
+            >
+              <span className=" text-deep-purple-600">Exp</span>
+              Countr
+            </Typography>
+          </Link>
 
           {/* navigation */}
-          {/* <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-6">
             <Typography as="li" variant="small" className="p-1 font-normal">
-              <a href="./discovery" className="flex items-center">
-                <FaGlobe className=" inline-block mr-1" /> Discovery
-              </a>
+              <Link to="./explore" className="flex items-center">
+                <FaGlobe className=" inline-block mr-1" /> Explore
+              </Link>
             </Typography>
             <Typography as="li" variant="small" className="p-1 font-normal">
-              <a href="./favourites" className="flex items-center">
+              <Link to="./favourites" className="flex items-center">
                 <FaHeart className=" inline-block mr-1" /> Favourites
-              </a>
+              </Link>
             </Typography>
-          </ul> */}
-
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/blogs">Blogs</a>
-            </li>
           </ul>
+
           {/* account buttons */}
           <div>{data ? <Account /> : <LoginRegister />}</div>
         </div>
