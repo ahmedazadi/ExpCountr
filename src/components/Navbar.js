@@ -1,37 +1,42 @@
 import { Navbar, Button, Typography } from "@material-tailwind/react";
 import { FaGlobe, FaHeart } from "react-icons/fa";
 
-const loggedIn = false;
+import { useContext } from "react";
+import { UserData } from "../App";
 
-const aa = () => {
-  if (loggedIn) {
-    return (
-      <Button variant="gradient" color="green" size="sm">
-        Account
-      </Button>
-    );
-  } else {
-    return (
-      <>
-        <a
-          href="https://anvilproject.org/guides/content/creating-links"
-          className="mr-3"
-        >
-          <Button variant="gradient" size="sm">
-            Register
-          </Button>
-        </a>
-        <a href="">
-          <Button variant="outlined" size="sm">
-            Login
-          </Button>
-        </a>
-      </>
-    );
-  }
-};
+// Account button in navbar
+function Account() {
+  return (
+    <Button variant="gradient" color="green" size="sm">
+      Me
+    </Button>
+  );
+}
+
+// login and resgister button in navbar
+function LoginRegister() {
+  return (
+    <>
+      <a
+        href="https://anvilproject.org/guides/content/creating-links"
+        className="mr-3"
+      >
+        <Button variant="gradient" size="sm">
+          Register
+        </Button>
+      </a>
+      <a href="">
+        <Button variant="outlined" size="sm">
+          Login
+        </Button>
+      </a>
+    </>
+  );
+}
 
 export default function Example() {
+  const data = useContext(UserData);
+
   const icon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +79,7 @@ export default function Example() {
         </ul>
 
         {/* account buttons */}
-        <div>{aa()}</div>
+        <div>{UserData ? <Account /> : <LoginRegister />}</div>
       </div>
     </Navbar>
   );
