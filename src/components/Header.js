@@ -42,7 +42,7 @@ export default function Header() {
 
   return (
     <>
-      <Navbar className="mx-auto max-w-screen-xl">
+      <Navbar className=" mx-auto max-w-screen-xl">
         <div className="text-blue-gray-900 container flex items-center justify-between">
           {/* logo */}
           <Link to="./">
@@ -57,7 +57,7 @@ export default function Header() {
           </Link>
 
           {/* navigation */}
-          <ul className="flex items-center gap-6">
+          <ul className="flex flex-col md:flex-row items-center gap-6">
             <Typography as="li" variant="small" className="p-1 font-normal">
               <Link to="./explore" className="flex items-center">
                 <FaGlobe className=" inline-block mr-1" /> Explore
@@ -71,7 +71,9 @@ export default function Header() {
           </ul>
 
           {/* account buttons */}
-          <div>{data ? <Account /> : <LoginRegister />}</div>
+          <div className="hidden sm:block">
+            {data ? <Account /> : <LoginRegister />}
+          </div>
         </div>
       </Navbar>
     </>

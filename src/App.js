@@ -11,6 +11,7 @@ import Explore from "./pages/Explore";
 import Favourites from "./pages/Favourites";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import CountryPage from "./pages/CountryPage";
 
 export const UserData = createContext();
 
@@ -29,6 +30,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/Favourites" element={<Favourites />} />
+          <Route path="/explore/:cid" element={<CountryPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
