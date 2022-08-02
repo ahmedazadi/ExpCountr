@@ -30,7 +30,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/Favourites" element={<Favourites />} />
-          <Route path="/explore/:cid" element={<CountryPage />} />
+          <Route path="/country/:cid" element={<CountryPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

@@ -1,6 +1,8 @@
 import CountryCard from "../components/CountryCard";
 import { useEffect, useState } from "react";
 
+import Loading from "../components/Loading";
+
 export default function Explore() {
   const [exploreData, setEexploreData] = useState();
   useEffect(() => {
@@ -12,7 +14,7 @@ export default function Explore() {
   }, []);
 
   if (!exploreData) {
-    return <h1>loading</h1>;
+    return <Loading />;
   }
 
   return (
