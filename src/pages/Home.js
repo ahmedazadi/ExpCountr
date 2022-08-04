@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserData } from "../App";
 import { Input, Button } from "@material-tailwind/react";
 import Container from "../components/Container";
 import { FaSearch } from "react-icons/fa";
+import CountryCard from "../components/CountryCard";
 
 const continents = [
   {
@@ -28,6 +29,18 @@ const continents = [
 ];
 
 export default function Home() {
+  // "CurrentContinent" for storing countries of a certain continent
+  const [currentContinent, setCurrentContinent] = useState(null);
+  const [currentContinentData, setCurrentContinentData] = useState();
+
+  useEffect(() => {
+    if (currentContinent) {
+      fetch(currentContinent.api)
+        .then((response) => response.json())
+        .then((data) => setCurrentContinentData(data));
+    }
+  }, [currentContinent]);
+
   const background =
     "https://images.unsplash.com/photo-1638291792853-5ab967de3611?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80";
   return (
@@ -75,7 +88,7 @@ export default function Home() {
                   <Button
                     variant="outlined"
                     onClick={() => {
-                      console.log(value);
+                      setCurrentContinent(value);
                     }}
                   >
                     {value.name}
@@ -84,6 +97,18 @@ export default function Home() {
               );
             })}
           </ul>
+          <div className="justify-between flex flex-wrap ">
+            {currentContinentData &&
+              currentContinentData.map((value) => {
+                return (
+                  <CountryCard
+                    cca2={value.cca2}
+                    text={value.name.official}
+                    image={value.flags.png}
+                  />
+                );
+              })}
+          </div>
         </div>
       </Container>
     </>
