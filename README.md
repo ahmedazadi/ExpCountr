@@ -1,3 +1,10 @@
+this is a react website about countries around the world
+
+you can search for the country by the name and read information about it.
+see all the countries in Explore section.
+continents are saperated in the home page, choose one and enjoy ;)
+
+
 in this project I used
 
 - [react library](https://reactjs.org/)
