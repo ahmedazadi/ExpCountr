@@ -1,5 +1,13 @@
-import { BsGlobe2 } from "react-icons/bs";
+import { Typography } from "@material-tailwind/react";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Loading() {
-  return <BsGlobe2 className="block mx-auto mt-20 w-20 h-40 animate-bounce" />;
+  return (
+    <>
+      <div className="flex items-center justify-center flex-col">
+        <FaMapMarkerAlt className=" block w-20 h-20  mx-auto my-40 space-x-2 animate-bounce" />
+        <Typography className="">Loading</Typography>
+      </div>
+    </>
+  );
 }

@@ -1,9 +1,16 @@
+// tools
 import { useContext, useEffect, useState } from "react";
 import { UserData } from "../App";
+
+// components
 import { Input, Button } from "@material-tailwind/react";
-import Container from "../components/Container";
 import { FaSearch } from "react-icons/fa";
 import CountryCard from "../components/CountryCard";
+import SectionHeader from "../components/SectionHeader";
+
+// layout
+import Container from "../layout/Container";
+import CardGrid from "../layout/CardGrid";
 
 const continents = [
   {
@@ -34,7 +41,10 @@ export default function Home() {
   const [currentContinentData, setCurrentContinentData] = useState();
 
   useEffect(() => {
+    // first check if {currentContinent} has some value or not
     if (currentContinent) {
+      // if {currentContinent} has a value that means the user has clicked on a continent button
+      // then fetch data from api
       fetch(currentContinent.api)
         .then((response) => response.json())
         .then((data) => setCurrentContinentData(data));
@@ -46,14 +56,14 @@ export default function Home() {
   return (
     <>
       <div
-        className=" absolute top-0 left-0 h-screen w-screen bg-no-repeat blur bg-cover"
+        className=" fixed top-0 left-0 h-screen w-screen bg-no-repeat blur bg-cover"
         style={{
           backgroundImage: `url("${background}")`,
           zIndex: "-2",
         }}
       ></div>
       <div
-        className=" absolute top-0 left-0 h-screen w-screen"
+        className=" fixed top-0 left-0 h-screen w-screen"
         style={{
           backgroundColor: "rgba(255,255,255,.5)",
           zIndex: "-1",
@@ -66,8 +76,8 @@ export default function Home() {
           us
         </h2>
         {/* search input */}
-        <form className="flex max-w-md mt-20 mx-auto">
-          <div className="bg-white flex-grow">
+        <form className="flex max-w-lg mt-20 mx-auto bg-white p-10 rounded-lg">
+          <div className=" flex-grow mr-4">
             <Input placeholder="Search" />
           </div>
           <Button type="submit" className=" bg-deep-purple-700">
@@ -77,12 +87,14 @@ export default function Home() {
         <div
           className=" bg-white py-4 rounded-2xl"
           style={{
-            marginTop: "30vh",
+            marginTop: "25vh",
           }}
         >
-          <h2 className="text-center font-bold text-2xl mb-8">Continents</h2>
+          {/* continent section */}
+          <SectionHeader align="center">Continents</SectionHeader>
           <ul className="flex justify-around">
             {continents.map((value) => {
+              // for each continent return a [li] tag that contains a button containing a continent
               return (
                 <li>
                   <Button
@@ -97,8 +109,12 @@ export default function Home() {
               );
             })}
           </ul>
-          <div className="justify-between flex flex-wrap ">
+
+          {/* grid container for country cards */}
+          <CardGrid className="">
+            {/* if [currentContinentData] contains some data then execute the code below */}
             {currentContinentData &&
+              // for each country from choosen content create a card and pass the value
               currentContinentData.map((value) => {
                 return (
                   <CountryCard
@@ -108,7 +124,7 @@ export default function Home() {
                   />
                 );
               })}
-          </div>
+          </CardGrid>
         </div>
       </Container>
     </>

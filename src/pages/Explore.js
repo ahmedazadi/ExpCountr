@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 // components
 import Loading from "../components/Loading";
 import Search from "../components/Search";
-import Container from "../components/Container";
+import SectionHeader from "../components/SectionHeader";
+
+// layout
+import Container from "../layout/Container";
+import CardGrid from "../layout/CardGrid";
 
 export default function Explore() {
   const [exploreData, setEexploreData] = useState();
@@ -26,14 +30,15 @@ export default function Explore() {
   return (
     <>
       {/* page container */}
-      <div className="container max-w-7xl mx-auto mt-7">
-        {/* section header */}
-        <h2 className=" text-4xl font-bold ml-4 mb-4">Explore</h2>
+      <Container>
         {/* search Input */}
         <Search className="mx-auto" searchResult={setSearchData} />
+        {/* section header */}
+        <SectionHeader>Explore</SectionHeader>
         {/* grid container */}
-        <div className="justify-between flex flex-wrap ">
+        <CardGrid className="bg-red-700">
           {exploreData.map((value) => {
+            // for each entity in the [exploreData] array create a card and pass in the required props
             return (
               <CountryCard
                 cca2={value.cca2}
@@ -42,8 +47,8 @@ export default function Explore() {
               />
             );
           })}
-        </div>
-      </div>
+        </CardGrid>
+      </Container>
     </>
   );
 }
