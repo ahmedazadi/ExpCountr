@@ -47,7 +47,14 @@ export default function Explore() {
       {/* page container */}
       <Container>
         {/* search Input */}
-        <Select options={optionsData} />
+        <Select
+          className=" max-w-lg mx-auto"
+          options={optionsData}
+          onChange={(value) => {
+            var win = window.open(`/country/${value.value}`, "_self");
+            win.focus();
+          }}
+        />
         {/* section header */}
         <SectionHeader>Explore</SectionHeader>
         {/* grid container */}
