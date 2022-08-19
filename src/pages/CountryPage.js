@@ -5,11 +5,17 @@ import Container from "../layout/Container";
 // components
 import Loading from "../components/Loading";
 import NativeNameTable from "../components/NativeNameTable";
+// special components
+import CountryHero from "../components/countryPage/CountryHero";
+import NamesTable from "../components/countryPage/NamesTable";
+// react leaflet
+import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 
 export default function CountryPage() {
   const cid = useParams().cid;
   const [countryData, setCountryData] = useState();
   const [nativeNames, setNativeNames] = useState([]);
+  const [borders, setBorders] = useState();
 
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/alpha/${cid}`)
@@ -38,70 +44,53 @@ export default function CountryPage() {
     return <Loading />;
   }
 
-  console.log(nativeNames);
+  console.log(countryData.borders);
 
   return (
     <>
-      {/* <h1>{JSON.stringify(countryData.name.nativeName)}</h1> */}
       <Container>
-        <div className="flex flex-col md:flex-row items-center ">
-          <div className=" md:w-1/2">
-            <img
-              alt="..."
-              className=" w-full m-auto rounded-lg shadow-lg"
-              src={countryData.flags.svg}
-            />
-          </div>
-          <div className="pl-5">
-            <div className="flex">
-              <h1 className=" font-bold text-4xl mb-4">
-                {countryData.name.official}
-              </h1>
-            </div>
-            <div className="flex items-center">
-              <p className=" text-gray-700 text-lg mr-2">Known as</p>
-              <h3 className=" font-bold text-2xl">{countryData.name.common}</h3>
-            </div>
-          </div>
-        </div>
-
+        {/* hero section for the country */}
+        <CountryHero names={countryData.name} flag={countryData.flags.svg} />
         {/* check if number of native names are more than one */}
         {nativeNames.length > 1 && (
           // then render the table
-          <table className="w-full rounded-lg overflow-hidden my-5">
-            <thead className=" bg-gray-200">
-              <tr className="rounded-l-lg  mb-2 sm:mb-0">
-                <th colspan="3" className="p-3 text-center text-xl">
-                  <h3>Name in Native Languages</h3>
-                </th>
-              </tr>
-              <tr className="  mb-2 sm:mb-0">
-                <th className="p-3 text-left">Language</th>
-                <th className="p-3 text-left">Official Name</th>
-                <th className="p-3 text-left">Common Name</th>
-              </tr>
-            </thead>
-            <tbody className="">
-              {nativeNames.map((value) => {
+          <NamesTable nativeNames={nativeNames} />
+        )}
+
+        {/* maps section */}
+        <div className="flex">
+          {/* border section */}
+          <div className=" w-1/4 ">
+            <ul class="border rounded-l-xl rounded-r-none border-gray-200 rounded overflow-hidden">
+              <h3 className="px-4 py-2 bg-gray-200 font-bold ">borders</h3>
+              {countryData.borders.map((value) => {
                 return (
-                  <tr className=" mb-2 sm:mb-0">
-                    <td className="border-grey-light border p-3">
-                      {value.lang}
-                    </td>
-                    <td className="border-grey-light border p-3">
-                      {value.officialName}
-                    </td>
-                    <td className="border-grey-light border p-3">
-                      {value.commonName}
-                    </td>
-                  </tr>
+                  <li class="px-4 py-2 bg-white hover:bg-sky-100 hover:text-sky-900 border-b last:border-none border-gray-200 transition-all duration-300 ease-in-out">
+                    {value}
+                  </li>
                 );
               })}
-            </tbody>
-          </table>
-        )}
+            </ul>
+          </div>
+          {/* leaflet map */}
+          <div className=" flex-grow h-96 bg-blue-gray-600">
+            <MapContainer
+              center={countryData.latlng}
+              zoom={4.5}
+              scrollWheelZoom={false}
+              style={{
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+            </MapContainer>
+          </div>
+        </div>
       </Container>
-      {/* <NativeNameTable data={nativeNames} /> */}
     </>
   );
 }

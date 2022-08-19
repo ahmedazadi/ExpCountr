@@ -12,3 +12,4 @@ in this project I used
 - [tailwindcss](https://tailwindcss.com/)
 - [material tailwindcss](https://www.material-tailwind.com/)
 - [react select](https://react-select.com/)
+- [react leaflet](https://react-leaflet.js.org/)
