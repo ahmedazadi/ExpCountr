@@ -1,6 +1,6 @@
 export default function NamesTable({ nativeNames }) {
   return (
-    <table className="w-full rounded-lg overflow-hidden my-5">
+    <table className="w-full rounded-lg overflow-hidden mb-10">
       <thead className=" bg-gray-200">
         <tr className="rounded-l-lg  mb-2 sm:mb-0">
           <th colspan="3" className="p-3 text-center text-xl">

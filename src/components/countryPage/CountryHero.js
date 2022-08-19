@@ -1,6 +1,6 @@
 export default function CountryHero({ names, flag }) {
   return (
-    <div className="flex flex-col md:flex-row items-center ">
+    <div className="flex flex-col md:flex-row items-center mb-10">
       <div className=" md:w-1/2">
         <img
           alt="..."
