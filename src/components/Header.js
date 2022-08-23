@@ -42,7 +42,7 @@ export default function Header() {
 
   return (
     <>
-      <Navbar className=" mx-auto max-w-screen-xl">
+      <Navbar className=" sticky top-0 z-10 mx-auto max-w-screen-xl">
         <div className="text-blue-gray-900 container flex items-center justify-between">
           {/* logo */}
           <Link to="./">

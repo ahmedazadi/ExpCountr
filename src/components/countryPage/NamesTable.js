@@ -17,7 +17,7 @@ export default function NamesTable({ nativeNames }) {
         {nativeNames.map((value) => {
           return (
             <tr className=" mb-2 sm:mb-0">
-              <td className="border-grey-light border p-3">{value.lang}</td>
+              <td className="border-grey-light border p-3 ">{value.lang}</td>
               <td className="border-grey-light border p-3">
                 {value.officialName}
               </td>
