@@ -1,28 +1,19 @@
 import { useState } from "react";
 
 export default function LangTable({ langs }) {
-  const [languages, setLanguages] = useState();
-
   langs = Object.keys(langs).map((value) => langs[value]);
 
   return (
-    <table className="w-full rounded-lg overflow-hidden mb-10">
-      <thead className=" bg-gray-200">
-        <tr className="rounded-l-lg  mb-2 sm:mb-0">
-          <th className="p-3 text-center text-xl">
-            <h3>Languages</h3>
-          </th>
-        </tr>
-      </thead>
-      <tbody className="">
+    <>
+      {/* header */}
+      <div className=" bg-gray-200 rounded-t-xl sm:mb-0 p-3 text-center text-xl font-bold">
+        <h3>Languages</h3>
+      </div>
+      <ul className="border rounded-b-xl p-4">
         {langs.map((value) => {
-          return (
-            <tr className=" mb-2 sm:mb-0">
-              <td className="border-grey-light border p-3 ">{value}</td>
-            </tr>
-          );
+          return <li className=" mb-2 sm:mb-0 border-b ">{value}</li>;
         })}
-      </tbody>
-    </table>
+      </ul>
+    </>
   );
 }
