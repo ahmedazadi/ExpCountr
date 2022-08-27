@@ -1,42 +1,17 @@
-import { Navbar, Button, Typography } from "@material-tailwind/react";
+import { Navbar, Typography } from "@material-tailwind/react";
 // iocns
 import { FaGlobe, FaHeart } from "react-icons/fa";
 // useContext for using userdata
 import { useContext } from "react";
-import { UserData } from "../App";
+import { userContext } from "../../App";
 // use link instead of anchor tag
-import { Outlet, Link } from "react-router-dom";
-
-// Account button in navbar
-function Account() {
-  return (
-    <Button variant="gradient" color="green" size="sm">
-      Me
-    </Button>
-  );
-}
-
-// login and resgister button in navbar
-function LoginRegister() {
-  return (
-    <>
-      <Link to="/register" className="mr-3">
-        <Button variant="gradient" size="sm">
-          Register
-        </Button>
-      </Link>
-      <Link to="/login">
-        <Button variant="outlined" size="sm">
-          Login
-        </Button>
-      </Link>
-    </>
-  );
-}
+import { Link } from "react-router-dom";
+// right side buttons
+import { Account, LoginRegister } from "./AccountLogin";
 
 export default function Header() {
-  const data = useContext(UserData);
-
+  const { currentUser } = { ...useContext(userContext) };
+  console.log(currentUser);
   return (
     <>
       <Navbar className=" sticky top-0 z-10 mx-auto max-w-screen-xl">
@@ -69,7 +44,7 @@ export default function Header() {
 
           {/* account buttons */}
           <div className="hidden sm:block">
-            {data ? <Account /> : <LoginRegister />}
+            {currentUser ? <Account /> : <LoginRegister />}
           </div>
         </div>
       </Navbar>

@@ -50,12 +50,13 @@ export default function Register() {
         <Typography
           variant="h3"
           color="purple"
-          className="mx-auto text-center text-6xl lg:text-8xl"
+          className="mx-auto text-center text-6xl lg:text-8xl right-left-animate"
         >
           Sign <span className="text-black">Up</span>
         </Typography>
         <Card className="w-96 mt-10 shadow-none rounded-none sm:rounded-lg sm:border">
           <form
+            className="form-animate-child"
             onSubmit={(e) => {
               // prevent page from reloading
               e.preventDefault();
@@ -66,7 +67,7 @@ export default function Register() {
             {/* header */}
 
             {/* body */}
-            <CardBody className="flex flex-col gap-4">
+            <CardBody className="flex flex-col gap-4 ">
               <Input
                 name="username"
                 color="purple"

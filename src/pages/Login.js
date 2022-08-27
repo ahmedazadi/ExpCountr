@@ -30,11 +30,11 @@ export default function Register() {
   });
   return (
     <Container>
-      <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8 z-10 ">
+      <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8 ">
         <Typography
           variant="h3"
           color="purple"
-          className="mx-auto text-center text-6xl lg:text-8xl z-10"
+          className="mx-auto text-center text-6xl lg:text-8xl right-left-animate"
         >
           Sign <span className="text-black">In</span>
         </Typography>

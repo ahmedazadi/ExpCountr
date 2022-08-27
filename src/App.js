@@ -1,5 +1,5 @@
 // components
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 
 // react
 import { useState, createContext } from "react";
@@ -13,14 +13,19 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CountryPage from "./pages/CountryPage";
 
-export const UserData = createContext();
+import db from "./db";
+
+export const userContext = createContext();
 
 function App() {
-  const [user, setUser] = useState();
+  const [users, setUsers] = useState(db);
+  const [currentUser, setCurrentUser] = useState(users[0]);
 
   return (
     <>
-      <UserData.Provider value={user}>
+      <userContext.Provider
+        value={{ users, setUsers, currentUser, setCurrentUser }}
+      >
         <Header />
         <Routes>
           <Route index element={<Home />} />
@@ -30,7 +35,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
-      </UserData.Provider>
+      </userContext.Provider>
     </>
   );
 }

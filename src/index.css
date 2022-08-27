@@ -14,3 +14,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* custom animatation */
+
+/* login & register animation */
+@keyframes right-left {
+  0% {
+    transform: translateX(30rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.right-left-animate {
+  animation-name: right-left;
+  animation-duration: 1300ms;
+  animation-timing-function: ease-out;
+}
