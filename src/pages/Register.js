@@ -11,8 +11,13 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import Container from "../layout/Container";
 import * as Yup from "yup";
+import { useContext } from "react";
+import { userContext } from "../App";
 
 export default function Register() {
+  const { users, setUsers, currentUser, setCurrentUser } =
+    useContext(userContext);
+
   // Formik structure
   const formik = useFormik({
     initialValues: {
@@ -41,7 +46,9 @@ export default function Register() {
         .oneOf([Yup.ref("password")], "Passwords must match"),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
+      setUsers([...users, values]);
+      setCurrentUser(values);
+      console.log(users);
     },
   });
   return (

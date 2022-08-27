@@ -19,7 +19,7 @@ export const userContext = createContext();
 
 function App() {
   const [users, setUsers] = useState(db);
-  const [currentUser, setCurrentUser] = useState(users[0]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
     <>
