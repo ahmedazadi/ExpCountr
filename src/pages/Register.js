@@ -7,6 +7,7 @@ import {
   Radio,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import Container from "../layout/Container";
 import * as Yup from "yup";
@@ -165,16 +166,11 @@ export default function Register() {
               <Typography variant="small" className="mt-6 flex justify-center">
                 Already have an account?
               </Typography>
-              <Button
-                variant="outlined"
-                color="purple"
-                fullWidth
-                onClick={() => {
-                  window.open("/Login", "_self");
-                }}
-              >
-                Sign In
-              </Button>
+              <Link to="/Login">
+                <Button variant="outlined" color="purple" fullWidth>
+                  Sign In
+                </Button>
+              </Link>
             </CardFooter>
           </form>
         </Card>

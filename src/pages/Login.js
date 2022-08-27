@@ -4,9 +4,9 @@ import {
   CardFooter,
   Typography,
   Input,
-  Radio,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import Container from "../layout/Container";
 import * as Yup from "yup";
@@ -30,11 +30,11 @@ export default function Register() {
   });
   return (
     <Container>
-      <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8">
+      <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8 z-10 ">
         <Typography
           variant="h3"
           color="purple"
-          className="mx-auto text-center text-6xl lg:text-8xl"
+          className="mx-auto text-center text-6xl lg:text-8xl z-10"
         >
           Sign <span className="text-black">In</span>
         </Typography>
@@ -92,16 +92,11 @@ export default function Register() {
               <Typography variant="small" className="mt-6 flex justify-center">
                 Don't have an account?
               </Typography>
-              <Button
-                variant="outlined"
-                color="purple"
-                fullWidth
-                onClick={() => {
-                  window.open("/register", "_self");
-                }}
-              >
-                Sign Up
-              </Button>
+              <Link to="/register">
+                <Button variant="outlined" color="purple" fullWidth>
+                  Sign Up
+                </Button>
+              </Link>
             </CardFooter>
           </form>
         </Card>
