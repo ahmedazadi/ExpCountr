@@ -1,13 +1,11 @@
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   Typography,
   Input,
   Radio,
   Button,
-  Alert,
 } from "@material-tailwind/react";
 import { useFormik } from "formik";
 import Container from "../layout/Container";
@@ -172,7 +170,7 @@ export default function Register() {
                 color="purple"
                 fullWidth
                 onClick={() => {
-                  // window.open("/Login", "_self");
+                  window.open("/Login", "_self");
                 }}
               >
                 Sign In
