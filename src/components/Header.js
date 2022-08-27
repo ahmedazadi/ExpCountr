@@ -20,19 +20,16 @@ function Account() {
 function LoginRegister() {
   return (
     <>
-      <a
-        href="https://anvilproject.org/guides/content/creating-links"
-        className="mr-3"
-      >
+      <Link to="/register" className="mr-3">
         <Button variant="gradient" size="sm">
           Register
         </Button>
-      </a>
-      <a href="">
+      </Link>
+      <Link to="/login">
         <Button variant="outlined" size="sm">
           Login
         </Button>
-      </a>
+      </Link>
     </>
   );
 }

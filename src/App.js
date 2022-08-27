@@ -16,11 +16,7 @@ import CountryPage from "./pages/CountryPage";
 export const UserData = createContext();
 
 function App() {
-  const [user, setUser] = useState({
-    username: "ahmed_azad",
-    password: "1234",
-    favourites: ["ab", "cd", "ef"],
-  });
+  const [user, setUser] = useState();
 
   return (
     <>

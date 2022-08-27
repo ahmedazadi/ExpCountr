@@ -13,3 +13,4 @@ in this project I used
 - [material tailwindcss](https://www.material-tailwind.com/)
 - [react select](https://react-select.com/)
 - [react leaflet](https://react-leaflet.js.org/)
+- [formik & yup](https://formik.org/)
