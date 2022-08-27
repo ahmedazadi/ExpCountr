@@ -10,6 +10,7 @@ import {
   Alert,
 } from "@material-tailwind/react";
 import { useFormik } from "formik";
+import Container from "../layout/Container";
 import * as Yup from "yup";
 
 export default function Register() {
@@ -26,7 +27,7 @@ export default function Register() {
     validationSchema: Yup.object({
       username: Yup.string()
         .max(20, "Username must be 20 characters or less ")
-        .required("Required"),
+        .required("Usernaem is required"),
 
       email: Yup.string()
         .email("Invalid Email address")
@@ -44,130 +45,142 @@ export default function Register() {
       alert(JSON.stringify(values));
     },
   });
-
   return (
-    <Card className="w-96 m-auto mt-10">
-      <form
-        onSubmit={(e) => {
-          // prevent page from reloading
-          e.preventDefault();
-          // allow formik to handle the page
-          formik.handleSubmit();
-        }}
-      >
-        {/* header */}
-        <CardHeader
-          variant="gradient"
-          className="mb-4 grid h-28 place-items-center"
+    <Container>
+      <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8">
+        <Typography
+          variant="h3"
+          color="purple"
+          className="mx-auto text-center text-6xl lg:text-8xl"
         >
-          <Typography variant="h3" color="purple">
-            Sign Up
-          </Typography>
-        </CardHeader>
-
-        {/* body */}
-        <CardBody className="flex flex-col gap-4">
-          <Input
-            name="username"
-            color="purple"
-            label="Username"
-            size="lg"
-            value={formik.values.username}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.username && formik.errors.username ? (
-            <Alert color="red">{formik.errors.username}</Alert>
-          ) : null}
-
-          <Input
-            name="email"
-            color="purple"
-            label="Email"
-            size="lg"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <Alert color="red">{formik.errors.email}</Alert>
-          ) : null}
-
-          <Input
-            name="password"
-            color="purple"
-            label="Password"
-            type="password"
-            size="lg"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <Alert color="red">{formik.errors.password}</Alert>
-          ) : null}
-
-          <Input
-            name="password2"
-            color="purple"
-            label="Password"
-            type="password"
-            size="lg"
-            value={formik.values.password2}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.password2 && formik.errors.password2 ? (
-            <Alert color="red">{formik.errors.password2}</Alert>
-          ) : null}
-
-          <div className="flex items-center justify-start">
-            <Typography>Gender: </Typography>
-            <Radio
-              name="gender"
-              color="purple"
-              id="male"
-              label="male"
-              value={formik.values.gender}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            <Radio
-              name="gender"
-              color="purple"
-              id="female"
-              label="female"
-              value={formik.values.gender}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-          </div>
-          {formik.touched.gender && formik.errors.gender ? (
-            <Alert color="red">{formik.errors.gender}</Alert>
-          ) : null}
-        </CardBody>
-
-        {/* footer */}
-        <CardFooter className="pt-0">
-          {/* submit button */}
-          <Button variant="gradient" type="submit" color="purple" fullWidth>
-            Sign Up
-          </Button>
-          <Typography variant="small" className="mt-6 flex justify-center">
-            Already have an account?
-          </Typography>
-          <Button
-            variant="outlined"
-            color="purple"
-            fullWidth
-            onClick={() => {
-              // window.open("/Login", "_self");
+          Sign <span className="text-black">Up</span>
+        </Typography>
+        <Card className="w-96 mt-10 shadow-none rounded-none sm:rounded-lg sm:border">
+          <form
+            onSubmit={(e) => {
+              // prevent page from reloading
+              e.preventDefault();
+              // allow formik to handle the page
+              formik.handleSubmit();
             }}
           >
-            Sign In
-          </Button>
-        </CardFooter>
-      </form>
-    </Card>
+            {/* header */}
+
+            {/* body */}
+            <CardBody className="flex flex-col gap-4">
+              <Input
+                name="username"
+                color="purple"
+                label="Username"
+                size="lg"
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.username && formik.errors.username ? (
+                <Typography className="text-yellow-900" variant="small">
+                  {formik.errors.username}
+                </Typography>
+              ) : null}
+
+              <Input
+                name="email"
+                color="purple"
+                label="Email"
+                size="lg"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <Typography className="text-yellow-900" variant="small">
+                  {formik.errors.email}
+                </Typography>
+              ) : null}
+
+              <Input
+                name="password"
+                color="purple"
+                label="Password"
+                type="password"
+                size="lg"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <Typography className="text-yellow-900" variant="small">
+                  {formik.errors.password}
+                </Typography>
+              ) : null}
+
+              <Input
+                name="password2"
+                color="purple"
+                label="Password"
+                type="password"
+                size="lg"
+                value={formik.values.password2}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.password2 && formik.errors.password2 ? (
+                <Typography className="text-yellow-900" variant="small">
+                  {formik.errors.password2}
+                </Typography>
+              ) : null}
+
+              <div className="flex items-center justify-start">
+                <Typography>Gender: </Typography>
+                <Radio
+                  name="gender"
+                  color="purple"
+                  id="male"
+                  label="male"
+                  value={formik.values.gender}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                <Radio
+                  name="gender"
+                  color="purple"
+                  id="female"
+                  label="female"
+                  value={formik.values.gender}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+              </div>
+              {formik.touched.gender && formik.errors.gender ? (
+                <Typography className="text-yellow-900" variant="small">
+                  {formik.errors.gender}
+                </Typography>
+              ) : null}
+            </CardBody>
+
+            {/* footer */}
+            <CardFooter className="pt-0">
+              {/* submit button */}
+              <Button variant="gradient" type="submit" color="purple" fullWidth>
+                Sign Up
+              </Button>
+              <Typography variant="small" className="mt-6 flex justify-center">
+                Already have an account?
+              </Typography>
+              <Button
+                variant="outlined"
+                color="purple"
+                fullWidth
+                onClick={() => {
+                  // window.open("/Login", "_self");
+                }}
+              >
+                Sign In
+              </Button>
+            </CardFooter>
+          </form>
+        </Card>
+      </div>
+    </Container>
   );
 }
