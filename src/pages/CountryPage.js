@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { userContext } from "../App";
 // layout
 import Container from "../layout/Container";
 // components
@@ -10,11 +11,15 @@ import BorderMap from "../components/countryPage/BorderMap";
 import SimpleCard from "../components/SimpleCard";
 import CountryDataGrid from "../components/countryPage/CountryDataGrid";
 import LangTable from "../components/countryPage/LangTable";
+// material tailwind
+import { Button } from "@material-tailwind/react";
 
 export default function CountryPage() {
   const cid = useParams().cid;
   const [countryData, setCountryData] = useState();
   const [nativeNames, setNativeNames] = useState([]);
+
+  const { currentUser, setCurrentUser } = { ...useContext(userContext) };
 
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/alpha/${cid}`)
@@ -42,6 +47,10 @@ export default function CountryPage() {
       });
   }, []);
 
+  // const [isAdded, setIsAdded] = useState();
+  // setIsAdded(currentUser.favs.includes(cid.toLocaleLowerCase()));
+  // console.log(currentUser.favs.includes(cid.toLocaleLowerCase()));
+
   if (!countryData) {
     return <Loading />;
   }
@@ -51,6 +60,45 @@ export default function CountryPage() {
       <Container>
         {/* hero section for the country */}
         <CountryHero names={countryData.name} flag={countryData.flags.svg} />
+
+        {/* favourite buton */}
+        {currentUser && (
+          <Button
+            disabled={!currentUser ? true : false}
+            className="mb-10 block w-80 mx-auto "
+            color="red"
+            variant={
+              currentUser.favs.includes(cid.toLowerCase())
+                ? "outlined"
+                : "filled "
+            }
+            onClick={() => {
+              // if this country is already added to favourites
+              if (currentUser.favs.includes(cid.toLowerCase())) {
+                // remove it splice(index to start with, number of items to be deleted)
+                currentUser.favs.splice(
+                  currentUser.favs.indexOf(cid.toLowerCase()),
+                  1
+                );
+              }
+              // if this country is NOT laready added
+              else {
+                // store all the favs in a temporary variable
+                const temp = currentUser.favs;
+                // add the this country to the temp variable too
+                temp.push(cid.toLocaleLowerCase());
+                // up date [currentUser] and add the new country to it
+                setCurrentUser({ ...currentUser, favs: [...temp] });
+              }
+              alert(JSON.stringify(currentUser));
+            }}
+          >
+            {currentUser.favs.includes(cid.toLocaleLowerCase())
+              ? "Remove from favourites"
+              : "Add to favourites"}
+          </Button>
+        )}
+
         {/* native names section */}
         <NamesTable nativeNames={nativeNames} />
         {/* maps and border section */}

@@ -21,6 +21,8 @@ export function Account() {
         size="sm"
         onClick={() => {
           setCurrentUser(null);
+          localStorage.removeItem("email");
+          localStorage.removeItem("password");
         }}
       >
         log out

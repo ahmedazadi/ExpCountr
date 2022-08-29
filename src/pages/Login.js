@@ -17,9 +17,14 @@ import * as Yup from "yup";
 // users data
 import { userContext } from "../App";
 
-export default function Register() {
+export default function Login() {
   // users data
   const { users, currentUser, setCurrentUser } = useContext(userContext);
+
+  // if the user has already signed in then jsut return to home page
+  if (currentUser) {
+    window.open("/", "_self").win.focus();
+  }
 
   // Formik structure
   const formik = useFormik({
@@ -48,7 +53,7 @@ export default function Register() {
       });
     },
   });
-  if (currentUser) return "already logged in";
+
   return (
     <Container>
       <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8 ">
