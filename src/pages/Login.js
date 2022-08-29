@@ -6,12 +6,21 @@ import {
   Input,
   Button,
 } from "@material-tailwind/react";
+// react
 import { Link } from "react-router-dom";
-import { useFormik } from "formik";
+import { useState, useContext } from "react";
+// layout
 import Container from "../layout/Container";
+// libraries
+import { useFormik } from "formik";
 import * as Yup from "yup";
+// users data
+import { userContext } from "../App";
 
 export default function Register() {
+  // users data
+  const { users, currentUser, setCurrentUser } = useContext(userContext);
+
   // Formik structure
   const formik = useFormik({
     initialValues: {
@@ -24,10 +33,22 @@ export default function Register() {
 
       password: Yup.string().required("Please enter you Password"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values));
+    onSubmit: (formValues) => {
+      users.forEach((usersData) => {
+        if (formValues.email === usersData.email) {
+          if (formValues.password === usersData.password) {
+            setCurrentUser(usersData);
+            // save data in the localstore of the browser
+            localStorage.setItem("email", usersData.email);
+            localStorage.setItem("password", usersData.password);
+            // if you found what you're looking for then just return
+            return;
+          }
+        }
+      });
     },
   });
+  if (currentUser) return "already logged in";
   return (
     <Container>
       <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8 ">

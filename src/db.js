@@ -8,9 +8,9 @@ const db = [
     favs: ["iq", "us", "tr"],
   },
   {
-    username: "person 2",
-    email: "person2@gmail.com",
-    password: "1234p2",
+    username: "p2",
+    email: "aa@b.com",
+    password: "123",
     favs: ["iq", "us", "tr"],
   },
   {
@@ -20,16 +20,5 @@ const db = [
     favs: ["iq", "us", "tr"],
   },
 ];
-
-// function newUser(username, email, password, gender) {
-//   let tmep = {
-//     username: username,
-//     email: email,
-//     password: password,
-//     gender: gender,
-//     favs: [],
-//   };
-//   users.push(tmep);
-// }
 
 export default db;

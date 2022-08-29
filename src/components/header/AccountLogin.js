@@ -1,12 +1,31 @@
 import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 
+import { useContext } from "react";
+import { userContext } from "../../App";
 // Account button in navbar
 export function Account() {
+  const { setCurrentUser } = { ...useContext(userContext) };
+
   return (
-    <Button variant="gradient" color="green" size="sm">
-      Me
-    </Button>
+    <>
+      {/* ME button */}
+      <Button className="mr-3" variant="gradient" color="purple" size="sm">
+        Me
+      </Button>
+      {/* log out button*/}
+      <Button
+        className=""
+        variant="text"
+        color="purple"
+        size="sm"
+        onClick={() => {
+          setCurrentUser(null);
+        }}
+      >
+        log out
+      </Button>
+    </>
   );
 }
 
@@ -14,13 +33,15 @@ export function Account() {
 export function LoginRegister() {
   return (
     <>
+      {/* Sign up button */}
       <Link to="/register" className="mr-3">
-        <Button variant="gradient" size="sm">
-          Register
+        <Button variant="gradient" color="purple" size="sm">
+          Sign Up
         </Button>
       </Link>
+      {/* Log in button */}
       <Link to="/login">
-        <Button variant="outlined" size="sm">
+        <Button variant="text" color="purple" size="sm">
           Login
         </Button>
       </Link>

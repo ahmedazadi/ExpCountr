@@ -2,7 +2,7 @@
 import Header from "./components/header/Header";
 
 // react
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // pages
@@ -19,7 +19,22 @@ export const userContext = createContext();
 
 function App() {
   const [users, setUsers] = useState(db);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState();
+
+  // (only once) check if the user has already logged in by checking local storage
+  useEffect(() => {
+    users.forEach((value) => {
+      // if email and password from local storage are correct
+      if (
+        value.email == localStorage.getItem("email") &&
+        value.password == localStorage.getItem("password")
+      ) {
+        // then login
+        setCurrentUser(value);
+        return;
+      }
+    });
+  }, []);
 
   return (
     <>
