@@ -12,6 +12,7 @@ import Favourites from "./pages/Favourites";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CountryPage from "./pages/CountryPage";
+import Me from "./pages/me";
 
 import db from "./db";
 
@@ -49,6 +50,7 @@ function App() {
           <Route path="/country/:cid" element={<CountryPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/me" element={<Me />} />
         </Routes>
       </userContext.Provider>
     </>

@@ -99,6 +99,7 @@ export default function Home() {
                 <li>
                   <Button
                     variant="outlined"
+                    color="purple"
                     onClick={() => {
                       setCurrentContinent(value);
                     }}

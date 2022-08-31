@@ -10,9 +10,11 @@ export function Account() {
   return (
     <>
       {/* ME button */}
-      <Button className="mr-3" variant="gradient" color="purple" size="sm">
-        Me
-      </Button>
+      <Link to="/me">
+        <Button className="mr-3" variant="gradient" color="purple" size="sm">
+          Me
+        </Button>
+      </Link>
       {/* log out button*/}
       <Button
         className=""
