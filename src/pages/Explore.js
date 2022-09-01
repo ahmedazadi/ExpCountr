@@ -16,7 +16,7 @@ export default function Explore() {
   const [optionsData, setOptionsData] = useState([]);
 
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
+    fetch("https://restcountries.com/v3.1/all?fields=name,flags,cca2")
       .then((response) => response.json())
       .then((data) => {
         // store all the data from api in [ExploreData] state to show it in the page

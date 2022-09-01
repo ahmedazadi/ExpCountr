@@ -31,7 +31,7 @@ export default function Favourites() {
           });
       });
     }
-  }, []);
+  }, [currentUser]);
 
   // check if the user has logged in
   if (!currentUser) {

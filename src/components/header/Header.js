@@ -14,7 +14,7 @@ export default function Header() {
   console.log(currentUser);
   return (
     <>
-      <Navbar className=" sticky top-0 z-10 mx-auto max-w-screen-xl">
+      <Navbar className=" sticky top-0 mx-auto max-w-screen-xl z-50">
         <div className="text-blue-gray-900 container flex items-center justify-between">
           {/* logo */}
           <Link to="./">

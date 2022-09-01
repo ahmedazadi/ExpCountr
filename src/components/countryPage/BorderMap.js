@@ -29,7 +29,7 @@ export default function BorderMap({ borders, location }) {
       {/* border section */}
       <div className=" md:w-1/4 ">
         <ul class="border rounded-t-lg rounded-b-none md:rounded-l-lg md:rounded-r-none border-gray-200 rounded overflow-y-auto max-h-96">
-          <h3 className="px-4 py-2 sticky top-0 bg-gray-200 font-bold ">
+          <h3 className="px-4 py-2 sticky top-0 bg-gray-200 font-bold z-10 ">
             borders
           </h3>
           {/* check if the country has border with couther countries */}
@@ -41,19 +41,18 @@ export default function BorderMap({ borders, location }) {
             ? "loading"
             : borderData.map((value) => {
                 return (
-                  <li class=" bg-white hover:bg-sky-100 hover:text-sky-900 border-b last:border-none border-gray-200 transition-all duration-300 ease-in-out">
+                  <Link
+                    class=" bg-white hover:bg-sky-100 hover:text-sky-900 border-b last:border-none border-gray-200 transition-all duration-300 ease-in-out"
+                    to={`/country/${value.cca2}`}
+                  >
                     <Button
                       fullWidth
                       variant="text"
                       className="block text-black text-left rounded-none px-4 py-2"
-                      // force page to reload when clicked
-                      onClick={() => {
-                        window.open(`/country/${value.cca2}`, "_self").focus();
-                      }}
                     >
                       {value.name.common}
                     </Button>
-                  </li>
+                  </Link>
                 );
               })}
         </ul>

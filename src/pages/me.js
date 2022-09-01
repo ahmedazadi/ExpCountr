@@ -14,8 +14,7 @@ import { userContext } from "../App";
 
 export default function () {
   const { currentUser } = { ...useContext(userContext) };
-  console.log(currentUser.email);
-
+  if (!currentUser) return "no data";
   return (
     <>
       <Container>
@@ -27,7 +26,7 @@ export default function () {
             <Typography variant="h4" color="blue-gray" className="mb-2">
               {currentUser.username}
             </Typography>
-            <Typography color="blue" className="font-medium" textGradient>
+            <Typography color="gray" className="font-medium" textGradient>
               {currentUser.email}
             </Typography>
           </CardBody>
