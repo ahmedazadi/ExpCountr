@@ -49,6 +49,10 @@ export default function Favourites() {
     );
   }
 
+  if (favData.length < currentUser.favs.length) {
+    return <Loading />;
+  }
+
   return (
     <>
       {/* page container */}

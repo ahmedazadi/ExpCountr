@@ -4,17 +4,20 @@ import {
   CardBody,
   CardFooter,
   Typography,
-  Tooltip,
 } from "@material-tailwind/react";
 
 import Container from "../layout/Container";
 
 import { useContext } from "react";
 import { userContext } from "../App";
+import Loading from "../components/Loading";
 
 export default function () {
   const { currentUser } = { ...useContext(userContext) };
-  if (!currentUser) return "no data";
+
+  // if currentUser is not ready then return Loading
+  if (!currentUser) return <Loading />;
+
   return (
     <>
       <Container>

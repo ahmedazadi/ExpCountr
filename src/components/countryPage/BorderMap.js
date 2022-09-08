@@ -9,6 +9,8 @@ export default function BorderMap({ borders, location }) {
   const [borderData, setBorderData] = useState([]);
 
   useEffect(() => {
+    // first reset the value and then add new values
+    setBorderData([]);
     // if [borders] prop is NOT undefined (meaning there is some data in it)
     if (borders != undefined) {
       // for each of the neighbor fetch name and cca2
@@ -22,7 +24,7 @@ export default function BorderMap({ borders, location }) {
           });
       });
     }
-  }, []);
+  }, [borders]);
 
   return (
     <div className="flex flex-col md:flex-row">
@@ -41,10 +43,7 @@ export default function BorderMap({ borders, location }) {
             ? "loading"
             : borderData.map((value) => {
                 return (
-                  <Link
-                    class=" bg-white hover:bg-sky-100 hover:text-sky-900 border-b last:border-none border-gray-200 transition-all duration-300 ease-in-out"
-                    to={`/country/${value.cca2}`}
-                  >
+                  <Link to={`/country/${value.cca2}`}>
                     <Button
                       fullWidth
                       variant="text"

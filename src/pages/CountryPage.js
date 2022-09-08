@@ -18,6 +18,7 @@ export default function CountryPage() {
   const cid = useParams().cid;
   const [countryData, setCountryData] = useState();
   const [nativeNames, setNativeNames] = useState([]);
+  const [isFavourite, SetIsFavourtie] = useState(null);
 
   const { currentUser, setCurrentUser } = { ...useContext(userContext) };
 
@@ -41,18 +42,18 @@ export default function CountryPage() {
             };
           })
         );
-      })
-      .catch((reason) => {
-        console.log("reason", reason.json());
       });
-  }, []);
-
-  // const [isAdded, setIsAdded] = useState();
-  // setIsAdded(currentUser.favs.includes(cid.toLocaleLowerCase()));
-  // console.log(currentUser.favs.includes(cid.toLocaleLowerCase()));
+  }, [cid]);
 
   if (!countryData) {
     return <Loading />;
+  }
+
+  // check if [isFavourite] is null
+  if (isFavourite == null) {
+    // then set a value to it
+    SetIsFavourtie(currentUser.favs.includes(cid.toLowerCase()));
+    console.log("is favourtied", isFavourite);
   }
 
   return (
@@ -67,11 +68,7 @@ export default function CountryPage() {
             disabled={!currentUser ? true : false}
             className="mb-10 block w-80 mx-auto "
             color="red"
-            variant={
-              currentUser.favs.includes(cid.toLowerCase())
-                ? "outlined"
-                : "filled "
-            }
+            variant={isFavourite ? "outlined" : "filled "}
             onClick={() => {
               // if this country is already added to favourites
               if (currentUser.favs.includes(cid.toLowerCase())) {
@@ -80,20 +77,21 @@ export default function CountryPage() {
                   currentUser.favs.indexOf(cid.toLowerCase()),
                   1
                 );
+                SetIsFavourtie(false);
               }
               // if this country is NOT laready added
               else {
                 // store all the favs in a temporary variable
                 const temp = currentUser.favs;
                 // add the this country to the temp variable too
-                temp.push(cid.toLocaleLowerCase());
+                temp.push(cid.toLowerCase());
                 // up date [currentUser] and add the new country to it
                 setCurrentUser({ ...currentUser, favs: [...temp] });
+                SetIsFavourtie(true);
               }
-              alert(JSON.stringify(currentUser));
             }}
           >
-            {currentUser.favs.includes(cid.toLocaleLowerCase())
+            {currentUser.favs.includes(cid.toLowerCase())
               ? "Remove from favourites"
               : "Add to favourites"}
           </Button>
