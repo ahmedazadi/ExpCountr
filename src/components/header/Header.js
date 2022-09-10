@@ -1,9 +1,9 @@
-import { Button, Navbar, Typography } from "@material-tailwind/react";
+import { Navbar, Typography } from "@material-tailwind/react";
 // iocns
 import { FaGlobe, FaHeart, FaBars } from "react-icons/fa";
 import { BsXLg } from "react-icons/bs";
 // useContext for using userdata
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { userContext } from "../../App";
 // use link instead of anchor tag
 import { Link } from "react-router-dom";
@@ -12,7 +12,18 @@ import { Account, LoginRegister } from "./AccountLogin";
 
 export default function Header() {
   const { currentUser } = { ...useContext(userContext) };
-  const [expand, setExpand] = useState(false);
+  const [expand, setExpand] = useState();
+
+  useEffect(() => {
+    // if it is a wider screen
+    if (window.innerWidth < 720) {
+      // [Expand] should be false by default
+      setExpand(false);
+    } else {
+      // otherwise le it be true by default
+      setExpand(true);
+    }
+  }, []);
 
   return (
     <>

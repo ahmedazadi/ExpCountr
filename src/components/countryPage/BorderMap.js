@@ -12,7 +12,7 @@ export default function BorderMap({ borders, location }) {
     // first reset the value and then add new values
     setBorderData([]);
     // if [borders] prop is NOT undefined (meaning there is some data in it)
-    if (borders != undefined) {
+    if (borders !== undefined) {
       // for each of the neighbor fetch name and cca2
       borders.forEach((element) => {
         fetch(
@@ -35,7 +35,7 @@ export default function BorderMap({ borders, location }) {
             borders
           </h3>
           {/* check if the country has border with couther countries */}
-          {borders == undefined
+          {borders === undefined
             ? "no border with other countries"
             : /* if [borderData]'s length is 0 (data has not fetched)
           then render "loading" else map through [borderData] and return [li] element */

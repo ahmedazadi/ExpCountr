@@ -23,7 +23,7 @@ export default function Me() {
       <Container>
         <Card className=" max-w-sm mx-auto">
           <CardHeader floated={false} className="max-h-80">
-            <img src={currentUser.profile} alt="profile-picture" />
+            <img src={currentUser.profile} alt="profile" />
           </CardHeader>
           <CardBody className="text-center">
             <Typography variant="h4" color="blue-gray" className="mb-2">

@@ -8,7 +8,6 @@ import Loading from "../components/Loading";
 import CountryHero from "../components/countryPage/CountryHero";
 import NamesTable from "../components/countryPage/NamesTable";
 import BorderMap from "../components/countryPage/BorderMap";
-import SimpleCard from "../components/SimpleCard";
 import CountryDataGrid from "../components/countryPage/CountryDataGrid";
 import LangTable from "../components/countryPage/LangTable";
 // material tailwind
@@ -50,7 +49,7 @@ export default function CountryPage() {
   }
 
   // check if [isFavourite] is null
-  if (isFavourite == null) {
+  if (isFavourite == null && currentUser) {
     // then set a value to it
     SetIsFavourtie(currentUser.favs.includes(cid.toLowerCase()));
     console.log("is favourtied", isFavourite);
@@ -121,7 +120,11 @@ export default function CountryPage() {
                 <h3>Coat of Arms</h3>
               </div>
               <div className="border rounded-b-xl p-4">
-                <img className="" src={countryData.coatOfArms.svg} />
+                <img
+                  className=""
+                  src={countryData.coatOfArms.svg}
+                  alt="coat of arm"
+                />
               </div>
             </div>
           </div>
