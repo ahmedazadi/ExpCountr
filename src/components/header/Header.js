@@ -11,10 +11,8 @@ import { Link } from "react-router-dom";
 import { Account, LoginRegister } from "./AccountLogin";
 
 export default function Header() {
-  const { currentUser } = { ...useContext(userContext) };
-  const [expand, setExpand] = useState();
-
-  useEffect(() => {
+  // function for hiding navbar
+  function NavbarVanish() {
     // if it is a wider screen
     if (window.innerWidth < 720) {
       // [Expand] should be false by default
@@ -23,6 +21,13 @@ export default function Header() {
       // otherwise le it be true by default
       setExpand(true);
     }
+  }
+
+  const { currentUser } = { ...useContext(userContext) };
+  const [expand, setExpand] = useState();
+
+  useEffect(() => {
+    NavbarVanish();
   }, []);
 
   return (
@@ -51,9 +56,7 @@ export default function Header() {
               <Link
                 to="./explore"
                 className="flex items-center"
-                onClick={() => {
-                  setExpand(!expand);
-                }}
+                onClick={NavbarVanish}
               >
                 <FaGlobe className=" inline-block mr-1" /> Explore
               </Link>
@@ -62,9 +65,7 @@ export default function Header() {
               <Link
                 to="./favourites"
                 className="flex items-center"
-                onClick={() => {
-                  setExpand(!expand);
-                }}
+                onClick={NavbarVanish}
               >
                 <FaHeart className=" inline-block mr-1" /> Favourites
               </Link>
@@ -73,7 +74,11 @@ export default function Header() {
 
           {/* account buttons */}
           <div className={`${expand ? "block" : "hidden"}  mt-10 md:mt-0`}>
-            {currentUser ? <Account /> : <LoginRegister />}
+            {currentUser ? (
+              <Account fn={NavbarVanish} />
+            ) : (
+              <LoginRegister fn={NavbarVanish} />
+            )}
           </div>
         </div>
       </Navbar>

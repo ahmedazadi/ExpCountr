@@ -17,15 +17,20 @@ export default function ({ data }) {
       {/* capitla */}
       <SimpleCard title={data.capital} text={"Capital"} Icon={FaBuilding} />
       {/* currency */}
-      <SimpleCard
-        title={`
-      ${data.currencies[Object.keys(data.currencies)].symbol}
-      |
-      ${data.currencies[Object.keys(data.currencies)].name}
-      `}
-        text={"Currency"}
-        Icon={FaMoneyBillAlt}
-      />
+      {/* ==================== */}
+      {/* first, check if the [currencies] exists. then render the component */}
+      {data.currencies[Object.keys(data.currencies)] && (
+        <SimpleCard
+          title={`
+            ${data.currencies[Object.keys(data.currencies)].symbol}
+            |
+            ${data.currencies[Object.keys(data.currencies)].name}
+          `}
+          text={"Currency"}
+          Icon={FaMoneyBillAlt}
+        />
+      )}
+      {/* ==================== */}
       {/* is independent */}
       <SimpleCard
         title={data.independent ? "Independent" : "Not Independent"}

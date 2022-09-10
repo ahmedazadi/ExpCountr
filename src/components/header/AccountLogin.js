@@ -4,14 +4,20 @@ import { Button } from "@material-tailwind/react";
 import { useContext } from "react";
 import { userContext } from "../../App";
 // Account button in navbar
-export function Account() {
+export function Account({ fn }) {
   const { setCurrentUser } = { ...useContext(userContext) };
 
   return (
     <>
       {/* ME button */}
       <Link to="/me">
-        <Button className="mr-3" variant="gradient" color="purple" size="sm">
+        <Button
+          className="mr-3"
+          variant="gradient"
+          color="purple"
+          size="sm"
+          onClick={fn}
+        >
           Me
         </Button>
       </Link>
@@ -25,6 +31,8 @@ export function Account() {
           setCurrentUser(null);
           localStorage.removeItem("email");
           localStorage.removeItem("password");
+
+          fn();
         }}
       >
         log out
@@ -34,18 +42,18 @@ export function Account() {
 }
 
 // login and resgister button in navbar
-export function LoginRegister() {
+export function LoginRegister({ fn }) {
   return (
     <>
       {/* Sign up button */}
       <Link to="/register" className="mr-3">
-        <Button variant="gradient" color="purple" size="sm">
+        <Button variant="gradient" color="purple" size="sm" onClick={fn}>
           Sign Up
         </Button>
       </Link>
       {/* Log in button */}
       <Link to="/login">
-        <Button variant="text" color="purple" size="sm">
+        <Button variant="text" color="purple" size="sm" onClick={fn}>
           Login
         </Button>
       </Link>
