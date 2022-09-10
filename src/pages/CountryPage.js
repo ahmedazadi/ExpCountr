@@ -111,7 +111,7 @@ export default function CountryPage() {
             <CountryDataGrid data={countryData} />
           </div>
           {/* right side */}
-          <div className="md:w-1/4 ml-4">
+          <div className="md:w-1/4 md:ml-4 ml-0 md:mt-0 mt-10">
             {/* languages */}
             <LangTable langs={countryData.languages} />
             {/* coad of arms */}

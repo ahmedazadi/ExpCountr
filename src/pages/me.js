@@ -21,8 +21,8 @@ export default function () {
   return (
     <>
       <Container>
-        <Card className="w-96 mx-auto">
-          <CardHeader floated={false} className="h-80">
+        <Card className=" max-w-sm mx-auto">
+          <CardHeader floated={false} className="max-h-80">
             <img src={currentUser.profile} alt="profile-picture" />
           </CardHeader>
           <CardBody className="text-center">
@@ -33,7 +33,7 @@ export default function () {
               {currentUser.email}
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-2">
+          <CardFooter className="flex justify-center flex-wrap gap-7 pt-2">
             {currentUser.favs.map((value) => {
               return <Card className=" py-2 px-4">{value}</Card>;
             })}

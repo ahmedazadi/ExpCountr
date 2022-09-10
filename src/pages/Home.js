@@ -1,6 +1,5 @@
 // tools
-import { useContext, useEffect, useState } from "react";
-import { UserData } from "../App";
+import { useEffect, useState } from "react";
 
 // components
 import { Input, Button } from "@material-tailwind/react";
@@ -92,12 +91,13 @@ export default function Home() {
         >
           {/* continent section */}
           <SectionHeader align="center">Continents</SectionHeader>
-          <ul className="flex justify-around">
+          <ul className="flex justify-around flex-wrap">
             {continents.map((value) => {
               // for each continent return a [li] tag that contains a button containing a continent
               return (
                 <li>
                   <Button
+                    className="mb-5 mx-1 w-40"
                     variant="outlined"
                     color="purple"
                     onClick={() => {
