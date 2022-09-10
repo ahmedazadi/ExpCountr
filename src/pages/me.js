@@ -12,7 +12,7 @@ import { useContext } from "react";
 import { userContext } from "../App";
 import Loading from "../components/Loading";
 
-export default function () {
+export default function Me() {
   const { currentUser } = { ...useContext(userContext) };
 
   // if currentUser is not ready then return Loading

@@ -1,8 +1,9 @@
-import { Navbar, Typography } from "@material-tailwind/react";
+import { Button, Navbar, Typography } from "@material-tailwind/react";
 // iocns
-import { FaGlobe, FaHeart } from "react-icons/fa";
+import { FaGlobe, FaHeart, FaBars } from "react-icons/fa";
+import { BsXLg } from "react-icons/bs";
 // useContext for using userdata
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { userContext } from "../../App";
 // use link instead of anchor tag
 import { Link } from "react-router-dom";
@@ -11,11 +12,12 @@ import { Account, LoginRegister } from "./AccountLogin";
 
 export default function Header() {
   const { currentUser } = { ...useContext(userContext) };
-  console.log(currentUser);
+  const [expand, setExpand] = useState(false);
+
   return (
     <>
-      <Navbar className=" sticky top-0 mx-auto max-w-screen-xl z-50">
-        <div className="text-blue-gray-900 container flex items-center justify-between">
+      <Navbar className=" sticky top-0 mx-auto max-w-screen-xl z-30">
+        <div className="text-blue-gray-900 container flex flex-col md:flex-row items-center justify-between">
           {/* logo */}
           <Link to="./">
             <Typography
@@ -29,25 +31,53 @@ export default function Header() {
           </Link>
 
           {/* navigation */}
-          <ul className="flex flex-col md:flex-row items-center gap-6">
+          <ul
+            className={`${
+              expand ? "flex" : "hidden"
+            } flex-col md:flex-row items-center mt-10 md:mt-0 gap-6`}
+          >
             <Typography as="li" variant="small" className="p-1 font-normal">
-              <Link to="./explore" className="flex items-center">
+              <Link
+                to="./explore"
+                className="flex items-center"
+                onClick={() => {
+                  setExpand(!expand);
+                }}
+              >
                 <FaGlobe className=" inline-block mr-1" /> Explore
               </Link>
             </Typography>
             <Typography as="li" variant="small" className="p-1 font-normal">
-              <Link to="./favourites" className="flex items-center">
+              <Link
+                to="./favourites"
+                className="flex items-center"
+                onClick={() => {
+                  setExpand(!expand);
+                }}
+              >
                 <FaHeart className=" inline-block mr-1" /> Favourites
               </Link>
             </Typography>
           </ul>
 
           {/* account buttons */}
-          <div className="hidden sm:block">
+          <div className={`${expand ? "block" : "hidden"}  mt-10 md:mt-0`}>
             {currentUser ? <Account /> : <LoginRegister />}
           </div>
         </div>
       </Navbar>
+      <button
+        className=" fixed md:hidden top-5 right-5 z-50 w-7 h-7 "
+        onClick={() => {
+          setExpand(!expand);
+        }}
+      >
+        {expand ? (
+          <BsXLg className=" w-full h-full" />
+        ) : (
+          <FaBars className=" w-full h-full" />
+        )}
+      </button>
     </>
   );
 }
