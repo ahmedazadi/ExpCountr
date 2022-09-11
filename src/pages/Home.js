@@ -86,6 +86,7 @@ export default function Home() {
             e.preventDefault();
 
             const value = searchInput;
+            setSearchLoading(true);
 
             // fetch by name
             await fetch(
@@ -96,7 +97,7 @@ export default function Home() {
                 if (data[0].status === 404) return;
 
                 setSearchResult(data);
-                setSearchLoading(true);
+
                 return data;
               })
               .catch((reason) => console.warn("name failed", reason));
@@ -110,7 +111,7 @@ export default function Home() {
                 if (data[0].status === 404) return;
 
                 setSearchResult(data);
-                setSearchLoading(true);
+
                 return data;
               })
               .catch((reason) => console.warn("currency failed", reason));
@@ -124,7 +125,7 @@ export default function Home() {
                 if (data[0].status === 404) return;
 
                 setSearchResult(data);
-                setSearchLoading(true);
+
                 return data;
               })
               .catch((reason) => console.warn("language failed", reason));
@@ -138,7 +139,7 @@ export default function Home() {
                 if (data[0].status === 404) return;
 
                 setSearchResult(data);
-                setSearchLoading(true);
+
                 return data;
               })
               .catch((reason) => console.warn("capital failed", reason));
@@ -152,7 +153,7 @@ export default function Home() {
                 if (data[0].status === 404) return;
 
                 setSearchResult(data);
-                setSearchLoading(true);
+
                 return data;
               })
               .catch((reason) => console.warn("region failed", reason));
@@ -166,7 +167,7 @@ export default function Home() {
                 if (data[0].status === 404) return;
 
                 setSearchResult(data);
-                setSearchLoading(true);
+
                 return data;
               })
               .catch((reason) => console.warn("subregion failed", reason));
@@ -212,15 +213,9 @@ export default function Home() {
           </div>
         )}
 
-        <div
-          className=" bg-white py-4 rounded-lg"
-          style={{
-            marginTop: "25vh",
-          }}
-        >
-          {/* continent section */}
+        {/* continent section */}
+        <div className=" bg-white py-4 rounded-lg mt-32">
           <SectionHeader align="center">Continents</SectionHeader>
-
           <ul className="flex justify-around flex-wrap">
             {continents.map((value) => {
               // for each continent return a [li] tag that contains a button containing a continent
