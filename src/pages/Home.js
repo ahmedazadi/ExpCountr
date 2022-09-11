@@ -6,6 +6,7 @@ import { Input, Button } from "@material-tailwind/react";
 import { FaSearch } from "react-icons/fa";
 import CountryCard from "../components/CountryCard";
 import SectionHeader from "../components/SectionHeader";
+import Loading from "../components/Loading";
 
 // layout
 import Container from "../layout/Container";
@@ -38,6 +39,10 @@ export default function Home() {
   // "CurrentContinent" for storing countries of a certain continent
   const [currentContinent, setCurrentContinent] = useState(null);
   const [currentContinentData, setCurrentContinentData] = useState();
+
+  const [searchResult, setSearchResult] = useState();
+  const [searchInput, setSearchInput] = useState();
+  const [searchLoading, setSearchLoading] = useState();
 
   useEffect(() => {
     // first check if {currentContinent} has some value or not
@@ -75,21 +80,141 @@ export default function Home() {
           us
         </h2>
         {/* search input */}
-        <form className="flex max-w-lg mt-20 mx-auto bg-white p-10 rounded-lg">
+        <form
+          className={`flex max-w-lg mt-20 mx-auto bg-white p-10 rounded-lg`}
+          onSubmit={async (e) => {
+            e.preventDefault();
+
+            const value = searchInput;
+            setSearchLoading(true);
+
+            // fetch by name
+            await fetch(
+              `https://restcountries.com/v3.1/name/${value}?fields=name,flags,cca2`
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                if (data[0].status === 404) return;
+
+                setSearchResult(data);
+
+                return data;
+              })
+              .catch((reason) => console.warn("name failed", reason));
+
+            // fetch by currency
+            await fetch(
+              `https://restcountries.com/v3.1/currency/${value}?fields=name,flags,cca2`
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                if (data[0].status === 404) return;
+
+                setSearchResult(data);
+
+                return data;
+              })
+              .catch((reason) => console.warn("currency failed", reason));
+
+            // fetch by language
+            await fetch(
+              `https://restcountries.com/v3.1/lang/${value}?fields=name,flags,cca2`
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                if (data[0].status === 404) return;
+
+                setSearchResult(data);
+
+                return data;
+              })
+              .catch((reason) => console.warn("language failed", reason));
+
+            // fetch by capital
+            await fetch(
+              `https://restcountries.com/v3.1/capital/${value}?fields=name,flags,cca2`
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                if (data[0].status === 404) return;
+
+                setSearchResult(data);
+
+                return data;
+              })
+              .catch((reason) => console.warn("capital failed", reason));
+
+            // fetch by region
+            await fetch(
+              `https://restcountries.com/v3.1/region/${value}?fields=name,flags,cca2`
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                if (data[0].status === 404) return;
+
+                setSearchResult(data);
+
+                return data;
+              })
+              .catch((reason) => console.warn("region failed", reason));
+
+            // fetch by subregion
+            await fetch(
+              `https://restcountries.com/v3.1/subregion/${value}?fields=name,flags,cca2`
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                if (data[0].status === 404) return;
+
+                setSearchResult(data);
+
+                return data;
+              })
+              .catch((reason) => console.warn("subregion failed", reason));
+
+            setSearchLoading(false);
+          }}
+        >
           <div className=" flex-grow mr-4">
-            <Input placeholder="Search" />
+            <Input
+              placeholder="Search"
+              name="search"
+              onChange={(e) => {
+                setSearchInput(e.target.value);
+              }}
+            />
           </div>
           <Button type="submit" className=" bg-deep-purple-700">
             <FaSearch />
           </Button>
         </form>
-        <div
-          className=" bg-white py-4 rounded-2xl"
-          style={{
-            marginTop: "25vh",
-          }}
-        >
-          {/* continent section */}
+
+        {/* search result */}
+
+        {searchResult && (
+          <div className=" bg-white py-4 rounded-lg mt-4">
+            <SectionHeader align="center">Search result</SectionHeader>
+            {searchLoading ? (
+              <Loading />
+            ) : (
+              // grid container for country cards
+              <CardGrid className="">
+                {searchResult.map((value) => {
+                  return (
+                    <CountryCard
+                      cca2={value.cca2}
+                      text={value.name.official}
+                      image={value.flags.png}
+                    />
+                  );
+                })}
+              </CardGrid>
+            )}
+          </div>
+        )}
+
+        {/* continent section */}
+        <div className=" bg-white py-4 rounded-lg mt-32">
           <SectionHeader align="center">Continents</SectionHeader>
           <ul className="flex justify-around flex-wrap">
             {continents.map((value) => {
