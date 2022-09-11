@@ -56,8 +56,7 @@ export default function Register() {
       <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8">
         <Typography
           variant="h3"
-          color="purple"
-          className="mx-auto text-center text-6xl lg:text-8xl right-left-animate"
+          className="mx-auto text-deep-purple-700 text-center text-6xl lg:text-8xl right-left-animate"
         >
           Sign <span className="text-black">Up</span>
         </Typography>
@@ -168,14 +167,25 @@ export default function Register() {
             {/* footer */}
             <CardFooter className="pt-0">
               {/* submit button */}
-              <Button variant="gradient" type="submit" color="purple" fullWidth>
+              <Button
+                variant="fill"
+                className="bg-deep-purple-700"
+                type="submit"
+                color="purple"
+                fullWidth
+              >
                 Sign Up
               </Button>
               <Typography variant="small" className="mt-6 flex justify-center">
                 Already have an account?
               </Typography>
               <Link to="/Login">
-                <Button variant="outlined" color="purple" fullWidth>
+                <Button
+                  variant="outlined"
+                  className="text-deep-purple-700 outline-deep-purple-700"
+                  color="purple"
+                  fullWidth
+                >
                   Sign In
                 </Button>
               </Link>

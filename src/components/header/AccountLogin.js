@@ -12,9 +12,9 @@ export function Account({ fn }) {
       {/* ME button */}
       <Link to="/me">
         <Button
-          className="mr-3"
-          variant="gradient"
-          color="purple"
+          className="mr-3 bg-deep-purple-700"
+          variant="fill"
+          color=""
           size="sm"
           onClick={fn}
         >
@@ -23,7 +23,7 @@ export function Account({ fn }) {
       </Link>
       {/* log out button*/}
       <Button
-        className=""
+        className="text-deep-purple-700"
         variant="text"
         color="purple"
         size="sm"
@@ -47,13 +47,25 @@ export function LoginRegister({ fn }) {
     <>
       {/* Sign up button */}
       <Link to="/register" className="mr-3">
-        <Button variant="gradient" color="purple" size="sm" onClick={fn}>
+        <Button
+          variant="fill"
+          className="bg-deep-purple-700"
+          color="purple"
+          size="sm"
+          onClick={fn}
+        >
           Sign Up
         </Button>
       </Link>
       {/* Log in button */}
       <Link to="/login">
-        <Button variant="text" color="purple" size="sm" onClick={fn}>
+        <Button
+          variant="text"
+          className="text-deep-purple-700"
+          color="purple"
+          size="sm"
+          onClick={fn}
+        >
           Login
         </Button>
       </Link>

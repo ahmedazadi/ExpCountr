@@ -222,7 +222,7 @@ export default function Home() {
               return (
                 <li>
                   <Button
-                    className="mb-5 mx-1 w-40"
+                    className="mb-5 mx-1 w-40 outline-deep-purple-700 text-deep-purple-700"
                     variant="outlined"
                     color="purple"
                     onClick={() => {

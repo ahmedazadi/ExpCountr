@@ -39,10 +39,12 @@ export default function Favourites() {
       <>
         <div className="mx-auto max-w-md text-center">
           <Typography variant="paragraph">
-            Sorry, in order to see you favourites, you need to Log In
+            Sorry, in order to see you favourites, you need to Sign in
           </Typography>
           <Link to="/login">
-            <Button color="purple">Sign in</Button>
+            <Button color="purple" className="bg-deep-purple-700">
+              Sign in
+            </Button>
           </Link>
         </div>
       </>

@@ -59,8 +59,7 @@ export default function Login() {
       <div className="flex flex-col md:flex-row justify-end items-center lg:mx-8 ">
         <Typography
           variant="h3"
-          color="purple"
-          className="mx-auto text-center text-6xl lg:text-8xl right-left-animate"
+          className="mx-auto text-deep-purple-700 text-center text-6xl lg:text-8xl right-left-animate"
         >
           Sign <span className="text-black">In</span>
         </Typography>
@@ -112,14 +111,25 @@ export default function Login() {
             {/* footer */}
             <CardFooter className="pt-0">
               {/* submit button */}
-              <Button variant="gradient" type="submit" color="purple" fullWidth>
+              <Button
+                variant="fill"
+                type="submit"
+                className="bg-deep-purple-700"
+                color="purple"
+                fullWidth
+              >
                 Sign In
               </Button>
               <Typography variant="small" className="mt-6 flex justify-center">
                 Don't have an account?
               </Typography>
               <Link to="/register">
-                <Button variant="outlined" color="purple" fullWidth>
+                <Button
+                  variant="outlined"
+                  className=" text-deep-purple-700 outline-deep-purple-700"
+                  color="purple"
+                  fullWidth
+                >
                   Sign Up
                 </Button>
               </Link>
