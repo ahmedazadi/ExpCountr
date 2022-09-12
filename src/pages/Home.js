@@ -81,7 +81,7 @@ export default function Home() {
         </h2>
         {/* search input */}
         <form
-          className={`flex max-w-lg mt-20 mx-auto bg-white p-10 rounded-lg`}
+          className={`flex flex-col sm:flex-row max-w-lg mt-20 mx-auto bg-white p-10 rounded-lg`}
           onSubmit={async (e) => {
             e.preventDefault();
 
@@ -175,16 +175,19 @@ export default function Home() {
             setSearchLoading(false);
           }}
         >
-          <div className=" flex-grow mr-4">
+          <div className=" flex-grow mb-4 sm:mb-0 sm:mr-4 ">
             <Input
-              placeholder="Search"
+              placeholder="Search by Country, Capital, Currency, etc..."
               name="search"
               onChange={(e) => {
                 setSearchInput(e.target.value);
               }}
             />
           </div>
-          <Button type="submit" className=" bg-deep-purple-700">
+          <Button
+            type="submit"
+            className=" bg-deep-purple-700 w-full sm:w-fit flex justify-center "
+          >
             <FaSearch />
           </Button>
         </form>
