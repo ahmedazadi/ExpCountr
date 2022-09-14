@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 // react
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 // layout
 import Container from "../layout/Container";
 // libraries

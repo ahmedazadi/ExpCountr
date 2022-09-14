@@ -18,7 +18,7 @@ export default function CountryCard({ text, image, cca2 }) {
         {/* card from material tailwind */}
         <Card className="w-full shadow-none transition-all bg-transparent">
           <CardHeader floated={false} className=" ">
-            <img src={image} alt="profile-picture" className=" w-full h-full" />
+            <img src={image} alt="profile" className=" w-full h-full" />
           </CardHeader>
           <CardBody className="text-center">
             <Typography variant="h4" color="blue-gray" className="mb-2">

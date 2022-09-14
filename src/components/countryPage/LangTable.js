@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function LangTable({ langs }) {
   langs = Object.keys(langs).map((value) => langs[value]);
 

@@ -15,8 +15,7 @@ import { useContext } from "react";
 import { userContext } from "../App";
 
 export default function Register() {
-  const { users, setUsers, currentUser, setCurrentUser } =
-    useContext(userContext);
+  const { users, setUsers, setCurrentUser } = useContext(userContext);
 
   // Formik structure
   const formik = useFormik({

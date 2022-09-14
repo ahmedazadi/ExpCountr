@@ -27,15 +27,15 @@ function App() {
     users.forEach((value) => {
       // if email and password from local storage are correct
       if (
-        value.email == localStorage.getItem("email") &&
-        value.password == localStorage.getItem("password")
+        value.email === localStorage.getItem("email") &&
+        value.password === localStorage.getItem("password")
       ) {
         // then login
         setCurrentUser(value);
         return;
       }
     });
-  }, []);
+  }, [users]);
 
   return (
     <>

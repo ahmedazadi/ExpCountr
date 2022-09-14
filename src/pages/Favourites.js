@@ -8,7 +8,6 @@ import { userContext } from "../App";
 import CountryCard from "../components/CountryCard";
 import Loading from "../components/Loading";
 import SectionHeader from "../components/SectionHeader";
-import Select from "react-select";
 
 // layout
 import Container from "../layout/Container";
