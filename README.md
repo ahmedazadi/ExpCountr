@@ -1,4 +1,4 @@
-# Explore Countries
+# Explore Countries [visit](https://expcountr.netlify.app/)
 This is a react website about countries around the world
 
 # How to use it
