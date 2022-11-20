@@ -46,11 +46,14 @@ export default function CountryDataGrid({ data }) {
         Icon={TbSteeringWheel}
       />
       {/* car sign */}
-      <SimpleCard
-        title={data.car.signs.map((value) => value + " |")}
-        text={"Car Sign"}
-        Icon={FaCar}
-      />
+      {data.car.signs && (
+        <SimpleCard
+          title={data.car.signs.map((value) => value + " |")}
+          text={"Car Sign"}
+          Icon={FaCar}
+        />
+      )}
+
       {/* start of week */}
       <SimpleCard
         title={data.startOfWeek}
